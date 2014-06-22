@@ -27,7 +27,7 @@ for patch in 3074401 3074431 3074411; do
   wget -O - https://patchwork.kernel.org/patch/$patch/raw/ | sed 's/drivers\/platform\/x86\/chromeos_laptop.c/drivers\/platform\/chrome\/chromeos_laptop.c/g'| patch -p1
 done
 
-patch -p1 < i2c-designware-pcidrv.patch
+patch -p1 < ../i2c-designware-pcidrv.patch
 
 
 # fetch the chromeos_laptop and atmel maxtouch source code
