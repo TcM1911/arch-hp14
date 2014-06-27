@@ -28,7 +28,7 @@ for patch in 3074401 3074431 3074411; do
 done
 
 patch -p1 < ../i2c-designware-pcidrv.patch
-patch -p1 < ../backlight.patch
+wget -O - https://bugs.freedesktop.org/attachment.cgi?id=101813 | patch -p1
 
 # fetch the chromeos_laptop and atmel maxtouch source code
 # Copy made from chromium.googlesource.com chromeos-3.8 branch
