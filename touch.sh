@@ -28,6 +28,7 @@ for patch in 3074401 3074431 3074411; do
 done
 
 patch -p1 < ../i2c-designware-pcidrv.patch
+wget -O - https://bugs.freedesktop.org/attachment.cgi?id=101813 | patch -p1
 
 # fetch the chromeos_laptop and atmel maxtouch source code
 # Copy made from chromium.googlesource.com chromeos-3.8 branch
@@ -55,6 +56,7 @@ echo "Building relevant modules..."
 make SUBDIRS=drivers/platform/chrome modules
 make SUBDIRS=drivers/i2c/busses modules
 make SUBDIRS=drivers/input/touchscreen modules
+make SUBDIRS=drivers/gpu/drm/i915 modules
 
 echo "Installing relevant modules..."
 # switch to using our new chromeos_laptop.ko module
@@ -79,7 +81,9 @@ sudo gzip /lib/modules/$archkernver/kernel/drivers/i2c/busses/i2c-designware-*.k
 sudo mv /lib/modules/$archkernver/kernel/drivers/input/touchscreen/atmel_mxt_ts.ko.gz /lib/modules/$archkernver/kernel/drivers/input/touchscreen/atmel_mxt_ts.ko.gz.orig
 sudo cp drivers/input/touchscreen/atmel_mxt_ts.ko /lib/modules/$archkernver/kernel/drivers/input/touchscreen/
 sudo gzip /lib/modules/$archkernver/kernel/drivers/input/touchscreen/atmel_mxt_ts.ko
-
+sudo mv /lib/modules/$archkernver/kernel/drivers/gpu/drm/i915/i915.ko.gz /lib/modules/$archkernver/kernel/drivers/gpu/drm/i915/i915.ko.gz.orig
+sudo cp drivers/gpu/drm/i915/i915.ko /lib/modules/$archkernver/kernel/drivers/gpu/drm/i915/i915.ko
+sudo gzip /lib/modules/$archkernver/kernel/drivers/gpu/drm/i915/i915.ko
 
 sudo depmod -a $archkernver
 
