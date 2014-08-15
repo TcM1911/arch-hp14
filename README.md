@@ -1,3 +1,3 @@
-Build touchscreen and touchpad drivers for the Asus c720p on Arch
+Build touchpad drivers for the HP Chromebook 14 on Arch
 
-Forked from masmullin2000. Backlight patch added
+Forked from masmullin2000
