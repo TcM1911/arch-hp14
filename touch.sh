@@ -15,8 +15,14 @@ sudo pacman -S --needed linux-headers
 
 # Grab kernel source
 echo "Fetching kernel sources..."
-git clone https://github.com/masmullin2000/kernel_tp_ts_bkl.git linux-${kernver}
-cd linux-${kernver}
+if [ -d "linux" ]; then
+  cd linux
+  git fetch --all
+  git reset --hard origin/master
+else
+  git clone https://github.com/masmullin2000/kernel_tp_ts_bkl.git linux
+  cd linux
+fi
 
 # Need this
 cp /usr/lib/modules/${archkernver}/build/Module.symvers .
